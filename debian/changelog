@@ -1,0 +1,145 @@
+sphinxbase (0.8+5prealpha+1-2build3) disco; urgency=medium
+
+  * No-change rebuild to build without python3.6 support.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sat, 03 Nov 2018 12:10:30 +0000
+
+sphinxbase (0.8+5prealpha+1-2build2) cosmic; urgency=medium
+
+  * No-change rebuild with fixed dh-python.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sat, 21 Jul 2018 23:12:36 +0200
+
+sphinxbase (0.8+5prealpha+1-2build1) cosmic; urgency=medium
+
+  * No-change rebuild to build for python3.7.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 28 Jun 2018 06:59:01 +0000
+
+sphinxbase (0.8+5prealpha+1-2) unstable; urgency=medium
+
+  * Make testsuite just fail on big-endian archs, which just don't work yet.
+  * control: Build-depend on python3-all-dev, add python3-sphinxbase package.
+  * rules: Add rules for building python3 packages.
+  * docs: Fix source path accordingly.
+  * rules: Fix patching header files.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 28 Apr 2018 11:53:25 +0200
+
+sphinxbase (0.8+5prealpha+1-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Samuel Thibault ]
+  * Use canonical anonscm vcs URL.
+  * control: Update maintainer mailing list.
+  * rules: Use DEB_BUILD_ARCH_ENDIAN instead of hardcoding a list.
+  * control: Bump Standards-Version to 4.1.1.
+
+  [ Paul Gevers ]
+  * New upstream release
+  * Bump debhelper compat level to 10
+  * Fix watch file for version mangling (and hope upstream doesn't release
+    again with the same version name)
+  * Add symbols file
+  * Enable hardening
+  * Add fix-sphinx_lm_convert-manpage.patch because one line is missing
+    (thanks Lintian)
+  * Make sure that sphinx_config.h can be found by other header files
+    after installation (LP: #1648877) Thanks Silvano Sallese
+  * Clarify license of doc/doxy2swig.py with author
+  * Don't ship the static library in python-sphinxbase
+  * Build-depend on libpulse-dev instead of libasound2-dev, and remove it from
+    Build-Conflicts.
+  * Have libsphinxbase-dev depend on libpulse-dev instead of libasound2-dev.
+
+ -- Paul Gevers <elbrus@debian.org>  Sun, 05 Nov 2017 20:54:53 +0100
+
+sphinxbase (0.8+5prealpha-3) unstable; urgency=medium
+
+  * watch: Generalize URL.
+  * compat: Bump to 9.
+  * rules: Clear.
+  * Use dh_link to build jquery.js link.
+  * control: Bump Standards-Version to 3.9.8 (no change).
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 04 Sep 2016 19:06:45 +0200
+
+sphinxbase (0.8+5prealpha-2) unstable; urgency=medium
+
+  * patches/non-linux: Fix build on non-Linux.
+  * patches/float: Fix bogus float type.
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 26 Oct 2015 19:35:12 +0100
+
+sphinxbase (0.8+5prealpha-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Add swig-sphinxbase package.
+    - Remove python-sphinxbase-dbg package.
+    - Rename libsphinxbase1 package to libsphinxbase3 according to soname
+      bump.
+    - patches/approximate_tests: Drop.
+    - patches/autoreconf: Merged.
+    - patches/spurious-link: Refresh.
+    - patches/tests: Merged.
+    - control: Replace cython with swig. Add dh-python build-dep. Drop
+      multiarch-support pre-depend.
+    - rules: Remove ad-hoc python rules.
+    - python-sphinxbase.install: Install files.
+    - debian/sphinx_lm_eval.1: Merged.
+  * Ignore testsuite failure on hppa too, as it is big-endian too
+    (Closes: #759743).
+  * Bump Standards-Version to 3.9.6 (no changes).
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 24 Oct 2015 16:22:20 +0200
+
+sphinxbase (0.8-6) unstable; urgency=medium
+
+  * patches/autoreconf: Fix Makefile.am into not using $(srcdir).
+  * patches/tests: Fix enabling tests.
+  * Use dh-autoreconf (Closes: #727272)
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 22 Aug 2014 00:04:19 +0200
+
+sphinxbase (0.8-5) unstable; urgency=medium
+
+  * debian/control: Switch to ALSA, blacklist pulseaudio and jack
+    (Closes: #737754).
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 09 Feb 2014 23:22:42 +0100
+
+sphinxbase (0.8-4) unstable; urgency=low
+
+  * Bump Standards-Version to 3.9.5 (no changes).
+  * Ignore testsuite result on big-endian archs.  They are supposed to be
+    supported, just seemingly have some (already reported) bugs
+    (Closes: #734215).
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 05 Jan 2014 03:05:54 +0100
+
+sphinxbase (0.8-3) unstable; urgency=low
+
+  * Add libsphinxbase-doc package containing the documentation
+    (Closes: #709601).
+  * rules:
+    - Make includedir arch-specific (Closes: #709601).
+    - Pass --install-layout=deb to setup.py.
+  * patches/approximate_tests: Relax tests a bit (Closes: #711550).
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 30 Jun 2013 22:06:30 +0200
+
+sphinxbase (0.8-2) unstable; urgency=low
+
+  * control: Make libsphinxbase-dev Multi-Arch: same.
+  * Remove useless README file.
+  * rules: remove python/sphinxbase.c on clean to make it regenerated with
+    fixed cython (Closes: #706664)
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 23 May 2013 01:07:47 +0200
+
+sphinxbase (0.8-1) unstable; urgency=low
+
+  * Initial release (Closes: #697151)
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 04 Jan 2013 17:00:31 +0100

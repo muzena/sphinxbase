@@ -1,0 +1,4 @@
+version=3
+opts= \
+dversionmangle=s/0.8\+//;s/(5prealpha)\+1/$1/ \
+http://sf.net/cmusphinx/ sphinxbase(?:[_\-]v?|)(\d[^\s/]*)\.(?:tar\.xz|txz|tar\.bz2|tbz2|tar\.gz|tgz)

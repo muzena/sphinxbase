@@ -1,0 +1,2 @@
+src/libsphinxbase/lm/jsgf_parser.h
+src/libsphinxbase/lm/jsgf_parser.c

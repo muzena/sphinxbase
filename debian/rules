@@ -1,0 +1,54 @@
+#!/usr/bin/make -f
+
+# Taken from the pygobject packaging.
+PYVERS := $(shell pyversions -r)
+PY3VERS := $(shell py3versions -r)
+
+DEB_HOST_MULTIARCH  ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@  --with autoreconf,python2,python3
+
+override_dh_auto_clean:
+	set -e ; for pyver in $(PYVERS) $(PY3VERS); do \
+	  rm -fr build-$$pyver ; \
+	done
+	dh_auto_clean
+
+override_dh_auto_configure:
+	set -e ; for pyver in $(PYVERS) $(PY3VERS); do \
+	  mkdir -p build-$$pyver; \
+	  PYTHON=/usr/bin/$$pyver dh_auto_configure -B build-$$pyver -- --includedir=\$${prefix}/include/$(DEB_HOST_MULTIARCH) ; \
+	done
+
+override_dh_auto_build:
+	set -e ; for pyver in $(PYVERS) $(PY3VERS); do \
+	  dh_auto_build -B build-$$pyver ; \
+	done
+
+# Big-endian archs do not work yet and create hundreds of gigabytes of log,
+# don't even try for now.
+ifeq (big,$(shell dpkg-architecture -qDEB_BUILD_ARCH_ENDIAN))
+override_dh_auto_test:
+	false
+else:
+	set -e ; for pyver in $(PYVERS) $(PY3VERS); do \
+	  dh_auto_test -B build-$$pyver ; \
+	done
+endif
+
+override_dh_auto_install:
+	set -e ; for pyver in $(PYVERS) $(PY3VERS); do \
+	  dh_auto_install -B build-$$pyver ; \
+	done
+	for file in $$(find debian/tmp/usr/lib/ -name "*.la" -o -name _sphinxbase.a); do \
+		rm $$file ; \
+	done
+	# sphinx_config.h is installed alongside the other header files. Make sure
+	# it can be found.
+	# https://bugs.launchpad.net/ubuntu/+bug/1648877
+	sed --in-place s#sphinx_config\.h#sphinxbase/sphinx_config.h# \
+		debian/tmp/usr/include/*/sphinxbase/ad.h \
+		debian/tmp/usr/include/*/sphinxbase/prim_type.h \
+		debian/tmp/usr/include/*/sphinxbase/sbthread.h

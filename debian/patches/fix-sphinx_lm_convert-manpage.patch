@@ -1,0 +1,16 @@
+Description: the man page misses a line currently because "'" is special
+ Thanks Lintian
+Author: Paul Gevers <elbrus@debian.org>
+Index: sphinxbase/doc/sphinx_lm_convert.1
+===================================================================
+--- sphinxbase.orig/doc/sphinx_lm_convert.1
++++ sphinxbase/doc/sphinx_lm_convert.1
+@@ -12,7 +12,7 @@ of the text in a language model file and
+ to upper or lower case.
+ .TP
+ .B \-case
+-'lower' or 'upper' - case fold to lower/upper case (NOT UNICODE AWARE)
++\'lower\' or \'upper\' - case fold to lower/upper case (NOT UNICODE AWARE)
+ .TP
+ .B \-debug
+ level for debugging messages
