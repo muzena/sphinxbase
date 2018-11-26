@@ -1,4 +1,4 @@
-sphinxbase (0.8+5prealpha) disco; urgency=emergency
+sphinxbase (0.8.1) cosmic; urgency=emergency
 
   * No-change rebuild to build without python3.6 support.
 
